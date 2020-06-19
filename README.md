@@ -18,5 +18,5 @@ cd get-youtube-feeds/
 ./build.sh
 ```
 
-Import get-youtube-feeds-x.y.z.zip into your your browser
+Import get-youtube-feeds-x.y.z.zip into your browser
 
