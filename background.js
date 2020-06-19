@@ -1,19 +1,33 @@
 
 const extId = 'get-youtube-feed';
 
-function onError(e){ console.log(`${extId}::onError: ${e}`); }
+function onError(e){ console.error(`${extId}::onError: ${e}`); }
 
 function getUrl(str) {
-	const url = new URL(str);
-	if ( url.host === 'www.youtube.com' &&  ( 
-		url.pathname.startsWith('/channel/') || 
-		url.pathname.startsWith('/user/')    || 
-		url.searchParams.has('list') ) ){
-		return url;
-	}
+	try {
+		const url = new URL(str);
+		if ( url.host === 'www.youtube.com' &&  ( 
+			url.pathname.startsWith('/channel/') || 
+			url.pathname.startsWith('/user/')    || 
+			url.searchParams.has('list') ) ){
+			return url;
+		}
+	}catch(e){onError(e);}
 	return false;
 }
 
+
+browser.tabs.onUpdated.addListener( async (tabId, changeInfo, tabInfo) => {  // tabs permission
+	if(changeInfo.url) {
+		if( getUrl(changeInfo.url) ){
+			browser.browserAction.setBadgeText({text: "on", tabId: tabInfo.id});
+		}else{
+			browser.browserAction.setBadgeText({text: "", tabId: tabInfo.id});
+		}
+	}
+});
+
+/*
 async function onWebNavDone (tab) {
 	try { 
 		const url = getUrl(tab.url);
@@ -25,9 +39,10 @@ async function onWebNavDone (tab) {
 		}
 	}catch(err){onError(err);}
 }
+*/
 async function onPageActionClicked (tab, onClickData) {
 	try {
-		const url = getUrl(tab.url); 
+		const url = getUrl(tab.url);
 		if(url) {
 			const feedUrl = new URL('/feeds/videos.xml', url.origin);
 
@@ -45,12 +60,14 @@ async function onPageActionClicked (tab, onClickData) {
 			}
 			const feedUrlStr = feedUrl.toString();
 			browser.tabs.executeScript({code: `window.open('${feedUrlStr}', '_blank');`}); // activeTab permission 
+		} else {
+			browser.tabs.executeScript({code: `alert('no feed information for ${tab.url}');`}); // activeTab permission 
 		}
 	}catch(err){onError(err);}
 }
 
-browser.webNavigation.onCompleted.addListener(onWebNavDone);
-browser.webNavigation.onHistoryStateUpdated.addListener(onWebNavDone);
-browser.pageAction.onClicked.addListener(onPageActionClicked);
+//browser.webNavigation.onDOMContentLoaded.addListener(onWebNavDone);
+//browser.webNavigation.onHistoryStateUpdated.addListener(onWebNavDone);
+browser.browserAction.onClicked.addListener(onPageActionClicked); // menu permission
 
 

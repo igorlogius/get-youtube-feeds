@@ -1,6 +1,6 @@
 {
     "name": "get-youtube-feed",
-    "description": "tbd.",
+    "description": "Allows easy access to Youtube Feeds from users, channels and playlists",
     "version": "1.0.0",
     "manifest_version": 2,
     "icons": {
@@ -10,12 +10,14 @@
         "scripts": ["background.js"]
     },
     "permissions": [
-	    "*://www.youtube.com/*",
-	    "activeTab",
-	    "webNavigation"
+	    "menus",
+	    "activeTab"
     ],
-    "page_action": {
-	"default_icon": "icon.png",
-        "browser_style": true
-    }
+    "browser_action": {
+        "default_icon": "icon.png",
+        "default_title": "open feed"
+    },
+    "optional_permissions" : [
+	"tabs"
+    ]
 }
