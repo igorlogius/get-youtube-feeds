@@ -1,0 +1,21 @@
+{
+    "name": "get-youtube-feed",
+    "description": "tbd.",
+    "version": "1.0.0",
+    "manifest_version": 2,
+    "icons": {
+	    "128": "icon.png"
+    },
+    "background": {
+        "scripts": ["background.js"]
+    },
+    "permissions": [
+	    "*//www.youtube.com/*",
+	    "activeTab",
+	    "webNavigation"
+    ],
+    "page_action": {
+	"default_icon": "icon.png",
+        "browser_style": true
+    }
+}

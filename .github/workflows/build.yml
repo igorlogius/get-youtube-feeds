@@ -1,0 +1,21 @@
+name: Node.js CI
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2 
+    - name: Cache multiple paths
+      uses: actions/cache@v2
+      with:
+        path: |
+          **/node_modules
+        key: ${{ runner.os }}-${{ hashFiles('**/lockfiles') }}
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '12'
+    - run: npm install web-ext
+    - run: node_modules/.bin/web-ext build
+    - uses: actions/upload-artifact@v2
+      with:
+        path: web-ext-artifacts/
