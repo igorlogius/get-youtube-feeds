@@ -14,9 +14,8 @@ jobs:
     - uses: actions/setup-node@v1
       with:
         node-version: '12'
-    - run: pwd
-    - run: echo ${{ GITHUB_WORKSPACE }}
-    - run: ${{ GITHUB_WORKSPACE }}/build.sh
+    - run: pwd && ls 
+    - run: build.sh
     - uses: actions/upload-artifact@v2
       with:
         path: ./*.zip 
