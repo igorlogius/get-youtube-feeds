@@ -106,8 +106,5 @@ dist
 # Web-Extension Artefacts files
 /*.zip
 
-# build script
-/build.sh
-
 /package.json
 /package-lock.json
