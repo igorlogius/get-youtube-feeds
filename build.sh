@@ -1,0 +1,1 @@
+build-web-ext/build.sh
