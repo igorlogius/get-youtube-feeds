@@ -1,7 +1,7 @@
 {
 	"name": "get-youtube-feeds",
 	"description": "Allows easy access to Youtube Feeds from users, channels and playlists",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"manifest_version": 2,
 	"icons": {
 		"256": "icon.png"
