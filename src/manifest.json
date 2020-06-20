@@ -1,7 +1,7 @@
 {
 	"name": "get-youtube-feeds",
 	"description": "Allows easy access to Youtube Feeds from users, channels and playlists",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"manifest_version": 2,
 	"icons": {
 		"256": "icon.png"
@@ -15,7 +15,7 @@
 	"page_action": {
 		"browser_style": true,
 		"default_icon": "icon.png",
-		"default_titel": "open feed",
+		"default_title": "open feed",
 		"show_matches": [ 
 			"https://www.youtube.com/user/*",
 			"https://www.youtube.com/channel/*",
