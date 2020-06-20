@@ -17,7 +17,7 @@ function getUrl(str) {
 }
 
 /**/
-async function onBrowserActionClicked (tab, onClickData) {
+async function onClicked (tab, onClickData) {
 	try {
 		url = getUrl(tab.url);
 		if (url) {
@@ -42,7 +42,7 @@ async function onBrowserActionClicked (tab, onClickData) {
 	}catch(err){onError(err);}
 	await browser.tabs.executeScript({code: `alert('no feed information for ${tab.url}');`});
 }
-
+/*
 async function onUpdated (tabId, changeInfo, tabInfo) {  // tabs permission
 	if(changeInfo.url) {
 		try {
@@ -54,7 +54,7 @@ async function onUpdated (tabId, changeInfo, tabInfo) {  // tabs permission
 		}catch(e){onError(e);}
 	}
 }
-
-browser.browserAction.onClicked.addListener(onBrowserActionClicked); // menu permission
+*/
+browser.pageAction.onClicked.addListener(onClicked); // menu permission
 browser.tabs.onUpdated.addListener(onUpdated); // tabs permission
 

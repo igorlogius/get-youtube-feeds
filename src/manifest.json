@@ -10,18 +10,24 @@
 		"scripts": ["background.js"]
 	},
 	"permissions": [
-		"menus",
 		"activeTab"
 	],
-	"browser_action": {
+	"page_action": {
+		"browser_style": true,
 		"default_icon": "icon.png",
-		"default_title": "open feed"
+		"default_titel": "open feed",
+		"show_matches": [ 
+			"https://www.youtube.com/user/*",
+			"https://www.youtube.com/channel/*",
+			"https://www.youtube.com/*&list=*"
+		]
 	},
 	"content_scripts": [{
-		"matches": ["*://www.youtube.com/*"],
+		"matches": [
+			"https://www.youtube.com/user/*",
+			"https://www.youtube.com/channel/*",
+			"https://www.youtube.com/*&list=*"
+		],
 		     "js": ["content-script.js"]
-	}],
-	"optional_permissions": [
-		"tabs"
-	]
+	}]
 }
