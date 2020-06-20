@@ -1,23 +1,27 @@
 {
-    "name": "get-youtube-feeds",
-    "description": "Allows easy access to Youtube Feeds from users, channels and playlists",
-    "version": "1.0.0",
-    "manifest_version": 2,
-    "icons": {
-	    "256": "icon.png"
-    },
-    "background": {
-        "scripts": ["background.js"]
-    },
-    "permissions": [
-	    "menus",
-	    "activeTab"
-    ],
-    "browser_action": {
-        "default_icon": "icon.png",
-        "default_title": "open feed"
-    },
-    "optional_permissions" : [
-	"tabs"
-    ]
+	"name": "get-youtube-feeds",
+	"description": "Allows easy access to Youtube Feeds from users, channels and playlists",
+	"version": "1.0.0",
+	"manifest_version": 2,
+	"icons": {
+		"256": "icon.png"
+	},
+	"background": {
+		"scripts": ["background.js"]
+	},
+	"permissions": [
+		"menus",
+		"activeTab"
+	],
+	"browser_action": {
+		"default_icon": "icon.png",
+		"default_title": "open feed"
+	},
+	"content_scripts": [{
+		"matches": ["*://www.youtube.com/*"],
+		     "js": ["content-script.js"]
+	}],
+	"optional_permissions": [
+		"tabs"
+	]
 }
