@@ -1,1 +1,4 @@
-build-web-ext/gitignore
+/node_modules/
+/*.zip
+/package-lock.json
+/build-web-ext/
