@@ -1,0 +1,3 @@
+[submodule "build-web-ext"]
+	path = build-web-ext
+	url = https://github.com/igorlogius/build-web-ext

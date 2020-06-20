@@ -1,5 +1,5 @@
 
-const extId = 'get-youtube-feed';
+const extId = 'get-youtube-feeds';
 
 function onError(e){ console.error(`${extId}::onError: ${e}`); }
 
@@ -16,12 +16,10 @@ function getUrl(str) {
 	return false;
 }
 
-/**/
 async function onClicked (tab, onClickData) {
 	try {
-		url = getUrl(tab.url);
+		const url = getUrl(tab.url);
 		if (url) {
-
 			const feedUrl = new URL('/feeds/videos.xml', url.origin);
 
 			if (url.pathname.startsWith('/user/')) {
@@ -40,21 +38,10 @@ async function onClicked (tab, onClickData) {
 		} else {
 		}
 	}catch(err){onError(err);}
-	await browser.tabs.executeScript({code: `alert('no feed information for ${tab.url}');`});
+	browser.tabs.executeScript({code: `alert('no feed info for ${tab.url}');`});
 }
-/*
-async function onUpdated (tabId, changeInfo, tabInfo) {  // tabs permission
-	if(changeInfo.url) {
-		try {
-			if( getUrl(changeInfo.url) ){
-				browser.browserAction.setBadgeText({text: "on", tabId: tabInfo.id});
-			}else{
-				browser.browserAction.setBadgeText({text: "", tabId: tabInfo.id});
-			}
-		}catch(e){onError(e);}
-	}
-}
-*/
+
+// add listeners 
 browser.pageAction.onClicked.addListener(onClicked); // menu permission
 browser.tabs.onUpdated.addListener(onUpdated); // tabs permission
 
