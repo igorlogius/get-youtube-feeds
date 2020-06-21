@@ -1,7 +1,7 @@
 {
 	"name": "get-youtube-feeds",
 	"description": "Easy access to youtube user,channel and playlist feeds",
-	"version": "1.0.3",
+	"version": "1.0.4",
 	"manifest_version": 2,
 	"icons": {
 		"256": "icon.png"
@@ -21,14 +21,6 @@
 			"https://www.youtube.com/channel/*",
 			"https://www.youtube.com/*&list=*"
 		]
-	},
-	"content_scripts": [{
-		"matches": [
-			"https://www.youtube.com/user/*",
-			"https://www.youtube.com/channel/*",
-			"https://www.youtube.com/*&list=*"
-		],
-		"js": ["content-script.js"]
-	}]
+	}
 }
 

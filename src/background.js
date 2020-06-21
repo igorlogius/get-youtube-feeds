@@ -33,15 +33,22 @@ async function onClicked (tab, onClickData) {
 			} else {
 				throw new Error('invalid url');
 			}
-			browser.tabs.sendMessage(tab.id, {"url": feedUrl.toString()});
+			browser.tabs.executeScript({code:
+				`
+				let link = document.createElement('a');
+				link.style.display = 'none';
+				link.setAttribute('target', '_blank');
+				document.body.append(link);
+				link.setAttribute('href','${feedUrl.toString()}');
+				const evt = new MouseEvent('click', {bubbles: false, cancelable: false,	view: window});
+				link.dispatchEvent(evt);
+				`
+			});
 			return;
-		} else {
 		}
 	}catch(err){onError(err);}
 	browser.tabs.executeScript({code: `alert('no feed info for ${tab.url}');`});
 }
 
-// add listeners 
-browser.pageAction.onClicked.addListener(onClicked); // menu permission
-browser.tabs.onUpdated.addListener(onUpdated); // tabs permission
+browser.pageAction.onClicked.addListener(onClicked); 
 
