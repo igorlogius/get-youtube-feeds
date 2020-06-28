@@ -1,0 +1,12 @@
+
+# Details
+# https://addons.mozilla.org/en-US/firefox/addon/get-youtube-feeds/
+
+# Build
+wget https://github.com/igorlogius/get-youtube-feeds/archive/master.zip
+unzip -d get-youtube-feeds -j master.zip
+zip "get-youtube-feeds-$(grep '"version"' get-youtube-feeds/manifest.json  | cut -d'"' -f4).xpi" ./get-youtube-feeds/*
+
+# Clean
+rm master.zip && rm ./get-youtube-feeds/* && rmdir ./get-youtube-feeds/
+
