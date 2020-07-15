@@ -1,8 +1,6 @@
 
 const extId = 'get-youtube-feeds';
 
-function onError(e){ console.error(`${extId}::onError: ${e}`); }
-
 function getUrl(str) {
 	if(str) {
 		const url = new URL(str);
@@ -46,7 +44,9 @@ async function onClicked (tab, onClickData) {
 			});
 			return;
 		}
-	}catch(err){onError(err);}
+	}catch(e){
+		console.error(e);
+	}
 	browser.tabs.executeScript({code: `alert('no feed info for ${tab.url}');`});
 }
 
